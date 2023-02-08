@@ -1,4 +1,3 @@
-
 data "aws_iam_policy_document" "event" {
   count = var.enable ? 1 : 0
   statement {
