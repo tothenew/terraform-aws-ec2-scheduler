@@ -12,7 +12,7 @@ locals {
   }
 }
 module "ec2-scheduler" {
-  source     = "/home/ubuntu/terraform-aws-ec2-scheduler"
+  source     = "../"
   instanceid = var.instance_id
   cron_start = var.cron_start
   cron_stop  = var.cron_stop
