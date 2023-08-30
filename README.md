@@ -1,44 +1,22 @@
-# terraform-aws-template
+# terraform-aws-ec2-scheduler
 
-[![Lint Status](https://github.com/tothenew/terraform-aws-template/workflows/Lint/badge.svg)](https://github.com/tothenew/terraform-aws-template/actions)
-[![LICENSE](https://img.shields.io/github/license/tothenew/terraform-aws-template)](https://github.com/tothenew/terraform-aws-template/blob/master/LICENSE)
+This module deploys ec2-scheduler that starts/stops instances on specific cron schedule.
 
-This is a template to use for baseline. The default actions will provide updates for section bitween Requirements and Outputs.
+The following resources will be created:
+- One lambda for starting up the instances and another for stopping the instances.
+- CloudWatch Rule (EventBridge) for triggering lambda functions. 
 
-The following content needed to be created and managed:
- - Introduction
-     - Explaination of module 
-     - Intended users
- - Resource created and managed by this module
- - Example Usages
-
-<!-- BEGIN_TF_DOCS -->
-## Requirements
-
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
-
-## Providers
-
-No providers.
-
-## Modules
-
-No modules.
-
-## Resources
-
-No resources.
-
-## Inputs
-
-No inputs.
-
-## Outputs
-
-No outputs.
-<!-- END_TF_DOCS -->
+## Usage
+```
+module "ec2_scheduler" {
+  source = "git::https://github.com/tothenew/terraform-aws-ec2-scheduler.git"
+  region = "us-east-1" # Your desired region
+  schedule_expression_start = "cron(30 12 ? * MON-FRI *)" # Runs at 8am during working days,customize according to your need.
+  schedule_expression_stop = "cron(30 2 ? * MON-FRI *)" # Runs at 6pm during working days,customize according to your need.
+  tag_key = "ENV"
+  tag_value = "non-prod"
+}
+```
 
 ## Authors
 
@@ -46,4 +24,4 @@ Module managed by [TO THE NEW Pvt. Ltd.](https://github.com/tothenew)
 
 ## License
 
-Apache 2 Licensed. See [LICENSE](https://github.com/tothenew/terraform-aws-template/blob/main/LICENSE) for full details.
+Apache 2 Licensed. See [LICENSE](https://github.com/tothenew/terraform-aws-vpc/blob/main/LICENSE) for full details.
