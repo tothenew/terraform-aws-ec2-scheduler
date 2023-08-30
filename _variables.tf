@@ -1,20 +1,25 @@
-variable "instanceid" {
-  description = "EC2 instance id for schedule"
+variable "region" {
+  description = "The AWS region in which resources will be created."
   type        = string
+  default     = "us-east-1"
 }
 
-variable "cron_stop" {
-  description = "Cron expression to define when to trigger a stop of the EC2"
-  type        = string
+variable "schedule_expression_start"{
+  type = string
+  default = "cron(0 8 ? * MON-FRI *)"  
 }
 
-variable "cron_start" {
-  description = "Cron expression to define when to trigger a start of the EC2"
-  type        = string
+variable "schedule_expression_stop"{
+  type = string
+  default = "cron(0 18 ? * MON-FRI *)" 
 }
 
-variable "enable" {
-  description = "Controls if resources should be created (it affects almost all resources)"
-  default     = true
-  type        = bool
+variable "tag_key" {
+  description = "The tag key to identify instances"
+  type = string
+}
+
+variable "tag_value" {
+  description = "The tag value to identify instances"
+  type = string
 }
