@@ -1,0 +1,5 @@
+tag_key   = "Environment"
+tag_value = "Dev"
+region    = "us-east-1"
+schedule_expression_start = "cron(0 8 ? * MON-FRI *)"
+schedule_expression_stop  = "cron(0 18 ? * MON-FRI *)"
