@@ -78,7 +78,7 @@ resource "aws_lambda_function" "ec2_start_scheduler_lambda" {
   function_name = "start_instances"
   role = "${aws_iam_role.ec2_start_stop_scheduler.arn}"
   handler = "start_instances.lambda_handler"
-  runtime = "python3.7"
+  runtime = "python3.13"
   timeout = 300
   source_code_hash = "${data.archive_file.start_scheduler.output_base64sha256}"
 
@@ -96,7 +96,7 @@ resource "aws_lambda_function" "ec2_stop_scheduler_lambda" {
   function_name = "stop_instances"
   role = "${aws_iam_role.ec2_start_stop_scheduler.arn}"
   handler = "stop_instances.lambda_handler"
-  runtime = "python3.7"
+  runtime = "python3.13"
   timeout = 300
   source_code_hash = "${data.archive_file.stop_scheduler.output_base64sha256}"
 
